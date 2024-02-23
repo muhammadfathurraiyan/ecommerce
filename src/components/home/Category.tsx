@@ -15,21 +15,21 @@ const data = [
 
 export default function Category() {
   return (
-    <div className="flex flex-col gap-2">
-      <div className="bg-neutral-100 p-6 rounded-lg shadow-lg flex items-center gap-2">
+    <div className="flex flex-col gap-3">
+      <div className="bg-neutral-100 p-6 rounded-lg shadow-lg flex items-center gap-3">
         <div className="p-2 bg-orange-600 w-fit rounded-md text-neutral-100">
           <Tag size={28} />
         </div>
         <h1 className="text-4xl font-bold">Kategori Menu</h1>
       </div>
-      <div className="grid grid-cols-4 max-lg:grid-cols-2 gap-2">
+      <div className="grid grid-cols-4 max-lg:grid-cols-2 gap-3">
         {data.map((data, index) => (
           <Link
             key={index}
             href={data.link}
-            className="h-[24vh] shadow-lg relative group"
+            className="h-[24vh] rounded-lg shadow-lg relative group"
           >
-            <div className="flex items-center justify-center rounded-lg bg-neutral-900/70 w-full h-full group-hover:bg-neutral-900/10 duration-300">
+            <div className="flex items-center justify-center rounded-lg bg-neutral-900/60 w-full h-full group-hover:bg-neutral-900/10 duration-300">
               <h2 className="text-center font-medium text-neutral-100 text-lg hover">
                 {data.title}
               </h2>
