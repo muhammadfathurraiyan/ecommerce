@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Header() {
   const date = new Date();
   return (
-    <header className="flex flex-col gap-2 bg-orange-600 text-neutral-100 p-6 max-lg:p-4 max-w-5xl mt-2 mx-auto max-lg:mx-2 rounded-lg">
+    <header className="flex flex-col gap-2 shadow-lg bg-orange-600 text-neutral-100 p-6 max-lg:p-4 max-w-5xl mt-2 mx-auto max-lg:mx-2 rounded-lg">
       <div className="flex items-center gap-1">
         <Calendar size={20} />
         <p className="text-sm">{date.toDateString()}</p>
