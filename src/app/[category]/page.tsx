@@ -5,6 +5,7 @@ import {
   Cookie,
   Pepper,
 } from "@phosphor-icons/react/dist/ssr";
+import { redirect } from "next/navigation";
 
 type TParams = {
   params: {
@@ -12,7 +13,13 @@ type TParams = {
   };
 };
 
+const categories = ["makanan", "kue", "minuman", "penajoh"];
+
 export default function page({ params }: TParams) {
+  if (!categories.includes(params.category)) {
+    redirect("/");
+  }
+
   const handleIcons = (icon: string) => {
     if (icon.includes("makanan")) {
       return BowlFood;
