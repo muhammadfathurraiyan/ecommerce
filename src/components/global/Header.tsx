@@ -8,7 +8,6 @@ export default function Header() {
   const date = new Date();
   const [search, setSearch] = useState<string>();
   const pathname = usePathname();
-  console.log(pathname);
   return (
     <header className="flex flex-col gap-2 shadow-lg bg-orange-600 text-neutral-100 p-6 max-lg:p-4 max-w-5xl mt-3 mx-auto max-lg:mx-3 rounded-lg">
       <div className="flex items-center gap-1">
@@ -18,13 +17,15 @@ export default function Header() {
       <div className="flex items-end flex-col gap-2">
         <div
           className={`flex max-lg:flex-col ${
-            !pathname.includes("/admin") ? "items-start gap-4" : "lg:items-end gap-2"
+            !pathname.startsWith("/admin")
+              ? "items-start gap-4"
+              : "lg:items-end gap-2"
           } justify-between w-full`}
         >
           <Link href="/" className="font-bold text-4xl">
             ECommerce
           </Link>
-          {!pathname.includes("/admin") ? (
+          {!pathname.startsWith("/admin") ? (
             <div className="relative flex-col w-3/5 max-lg:w-full gap-2 flex items-center justify-center">
               <input
                 type="text"

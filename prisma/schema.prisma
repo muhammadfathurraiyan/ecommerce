@@ -30,5 +30,6 @@ model Admin {
   email    String    @unique
   name     String
   password String
+  role     String
   product  Product[]
 }
