@@ -1,31 +1,17 @@
+"use client";
 import { logIn } from "@/lib/utils";
-import { Fingerprint, SignIn } from "@phosphor-icons/react/dist/ssr";
-import { redirect } from "next/navigation";
-import bcrypt from "bcrypt";
-import prisma from "@/lib/prisma";
+import { Fingerprint, SignIn } from "@phosphor-icons/react";
+import { FormEvent, useState } from "react";
 
 export default function page() {
-  const authentication = async (data: FormData) => {
-    "use server";
-    const admin = await prisma.admin.findUnique({
-      where: { email: data.get("email") as string },
-    });
-
-    if (!admin) {
-      return null;
+  const [error, setError] = useState("");
+  const authentication = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const result = await logIn(data);
+    if (result?.error) {
+      setError(result.error);
     }
-
-    const checkPassword = await bcrypt.compare(
-      data.get("password") as string,
-      admin.password
-    );
-
-    if (!checkPassword) {
-      return null;
-    }
-
-    await logIn(admin);
-    redirect("/admin");
   };
 
   return (
@@ -38,15 +24,16 @@ export default function page() {
           <h1 className="text-4xl font-bold">Admin Login</h1>
         </div>
         <form
-          action={authentication}
+          onSubmit={authentication}
           className=" rounded-lg bg-neutral-100 shadow-lg p-6 flex flex-col gap-3"
         >
           <h2 className="text-xl font-bold">
             Silahkan login untuk ke menu dashboard.
           </h2>
+          <p className="text-red-500">{error}</p>
           <div>
             <label htmlFor="email" className="text-sm font-medium">
-              Email :{" "}
+              Email :
             </label>
             <input
               type="text"
@@ -54,7 +41,7 @@ export default function page() {
               className="border w-full px-4 py-2 rounded-lg text-neutral-900 outline-none"
             />
             <label htmlFor="password" className="text-sm font-medium">
-              Password :{" "}
+              Password :
             </label>
             <input
               type="password"
