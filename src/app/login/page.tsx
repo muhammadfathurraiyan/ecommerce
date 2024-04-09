@@ -18,7 +18,7 @@ export default function page() {
   };
 
   return (
-    <main className="min-h-screen max-w-5xl mx-auto my-3 max-lg:mx-2 text-neutral-900 flex justify-center">
+    <main className="min-h-screen max-w-5xl mx-auto my-3 max-lg:mx-2 text-neutral-800 flex justify-center">
       <div className="flex flex-col gap-3 w-1/2 max-lg:w-full">
         <Banner Icon={Fingerprint} title="Halaman Login" />
         <form

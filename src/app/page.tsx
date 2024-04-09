@@ -9,7 +9,7 @@ import {
 
 export default async function Home() {
   return (
-    <main className="min-h-screen max-w-5xl mx-auto my-3 max-lg:mx-2 text-neutral-900 flex flex-col gap-3">
+    <main className="min-h-screen max-w-5xl mx-auto my-3 max-lg:mx-2 text-neutral-800 flex flex-col gap-3">
       <Category />
       <Menu title="Makanan Khas Aceh" Icon={BowlFood} />
       <Menu title="Minuman Khas Aceh" Icon={Coffee} />

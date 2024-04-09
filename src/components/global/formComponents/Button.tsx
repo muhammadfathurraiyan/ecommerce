@@ -25,7 +25,7 @@ export default function Button({
       type={types}
       className={`${
         color ? colorOptions[color] : "bg-orange-600 hover:bg-orange-700"
-      } flex items-center gap-2 p-2 duration-300 w-fit rounded-md text-neutral-100`}
+      } flex items-center gap-2 py-2 px-4 duration-300 w-fit rounded-md text-neutral-100`}
     >
       {Icon && <Icon size={iconSize} />}
       {title}

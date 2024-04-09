@@ -14,7 +14,7 @@ import {
 export default async function page() {
   const session = await getSession();
   return (
-    <main className="max-w-5xl mx-auto my-3 max-lg:mx-2 text-neutral-900 flex flex-col gap-3">
+    <main className="max-w-5xl mx-auto my-3 max-lg:mx-2 text-neutral-800 flex flex-col gap-3">
       <Banner Icon={SquaresFour} title="Dashboard" />
       <div className="grid lg:grid-cols-3 gap-3">
         <div className="grid grid-rows-2 gap-3">

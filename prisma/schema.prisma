@@ -19,6 +19,7 @@ model Product {
   updatedAt   DateTime @updatedAt
   title       String
   category    String
+  noWa        String
   description String?
   published   Boolean  @default(false)
   admin       Admin    @relation(fields: [adminId], references: [id])

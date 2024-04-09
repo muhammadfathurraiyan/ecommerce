@@ -3,9 +3,9 @@ import Makanan from "../../../../public/makanan.jpg";
 import { BowlFood, ShoppingBagOpen } from "@phosphor-icons/react/dist/ssr";
 import Button from "@/components/global/formComponents/Button";
 
-export default function page() {
+export default function page({ params }: { params: { product: string } }) {
   return (
-    <main className="max-w-5xl mx-auto my-3 max-lg:mx-2 text-neutral-900 gap-3 grid grid-cols-2 max-lg:grid-cols-1">
+    <main className="max-w-5xl mx-auto my-3 max-lg:mx-2 text-neutral-800 gap-3 grid grid-cols-2 max-lg:grid-cols-1">
       <div className="bg-black h-[80vh] rounded-lg shadow-lg">
         <Image
           src={Makanan}
@@ -18,13 +18,13 @@ export default function page() {
           <h1 className="text-3xl font-bold">Lorem ipsum dolor sit amet</h1>
           <h2 className="text-xl font-bold">Rp. 15.000</h2>
         </div>
-        <div>
+        <div className="mt-4">
           <p className="text-sm font-bold text-orange-600">Kategori :</p>
           <div className="flex items-center gap-2">
             <div className="p-1 bg-orange-600 text-neutral-100 rounded-md">
               <BowlFood size={20} />
             </div>
-            <p className="text-lg">Makanan</p>
+            <p className="font-bold">Makanan</p>
           </div>
         </div>
         <div>
