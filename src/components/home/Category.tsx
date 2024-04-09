@@ -5,6 +5,7 @@ import Kue from "../../../public/kue.jpg";
 import Penajoh from "../../../public/penajoh.jpg";
 import Image from "next/image";
 import Link from "next/link";
+import Banner from "../global/Banner";
 
 const data = [
   { title: "Makanan Khas Aceh", image: Makanan, link: "/makanan" },
@@ -16,12 +17,7 @@ const data = [
 export default function Category() {
   return (
     <div className="flex flex-col gap-3">
-      <div className="bg-neutral-100 p-6 rounded-lg shadow-lg flex items-center gap-3">
-        <div className="p-2 bg-orange-600 w-fit rounded-md text-neutral-100">
-          <Tag size={28} />
-        </div>
-        <h1 className="text-4xl font-bold">Kategori Menu</h1>
-      </div>
+      <Banner title="Kategori Menu" Icon={Tag} />
       <div className="grid grid-cols-4 max-lg:grid-cols-2 gap-3">
         {data.map((data, index) => (
           <Link

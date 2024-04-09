@@ -24,7 +24,6 @@ export async function decrypt(input: string): Promise<any> {
 }
 
 export async function logIn(data: any) {
-  "use server";
   const admin = await prisma.admin.findUnique({
     where: { email: data.get("email") as string },
   });

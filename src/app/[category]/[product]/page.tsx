@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Makanan from "../../../../public/makanan.jpg";
 import { BowlFood, ShoppingBagOpen } from "@phosphor-icons/react/dist/ssr";
-import Link from "next/link";
+import Button from "@/components/global/formComponents/Button";
 
 export default function page() {
   return (
@@ -36,12 +36,12 @@ export default function page() {
             commodi ut laudantium aliquid?
           </p>
         </div>
-        <Link
-          href=""
-          className="flex items-center gap-2 p-2 bg-orange-600 hover:bg-orange-700 duration-300 w-fit rounded-md text-neutral-100 text-lg"
-        >
-          <ShoppingBagOpen size={20} /> Pesan
-        </Link>
+        <Button
+          types="button"
+          Icon={ShoppingBagOpen}
+          iconSize={22}
+          title="Pesan"
+        />
       </div>
     </main>
   );

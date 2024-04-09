@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@phosphor-icons/react";
 import { ShoppingBagOpen } from "@phosphor-icons/react/dist/ssr";
+import Button from "./formComponents/Button";
+import Banner from "./Banner";
 
 const data = [
   { title: "Makanan Khas Aceh", image: Makanan, link: "/makanan" },
@@ -15,12 +17,7 @@ const data = [
 export default function Menu({ title, Icon }: { title: string; Icon: Icon }) {
   return (
     <div className="flex flex-col gap-3">
-      <div className="bg-neutral-100 p-6 rounded-lg shadow-lg flex items-center gap-3">
-        <div className="p-2 bg-orange-600 w-fit rounded-md text-neutral-100">
-          <Icon size={28} />
-        </div>
-        <h1 className="text-4xl font-bold">{title}</h1>
-      </div>
+      <Banner title={title} Icon={Icon} />
       <div className="grid grid-cols-3 max-lg:grid-cols-1 gap-3">
         {data.map((data, index) => (
           <div key={index} className="rounded-lg bg-neutral-100 shadow-lg">
@@ -34,12 +31,12 @@ export default function Menu({ title, Icon }: { title: string; Icon: Icon }) {
             <div className="p-6 flex flex-col gap-3">
               <p className="text-2xl font-bold">Rp. 15.000</p>
               <h2 className="text-lg font-medium">{data.title}</h2>
-              <Link
-                href={data.link}
-                className="flex items-center gap-2 p-2 bg-orange-600 hover:bg-orange-700 duration-300 w-fit rounded-md text-neutral-100 text-lg"
-              >
-                <ShoppingBagOpen size={22} /> Pesan
-              </Link>
+              <Button
+                title="Pesan"
+                types="button"
+                Icon={ShoppingBagOpen}
+                iconSize={22}
+              />
             </div>
           </div>
         ))}
