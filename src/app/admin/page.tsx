@@ -4,15 +4,17 @@ import Button from "@/components/global/formComponents/Button";
 import { getSession } from "@/lib/utils";
 import {
   ChartLine,
+  Cube,
   FastForward,
-  Plus,
   SquaresFour,
   Table,
   UserCircle,
 } from "@phosphor-icons/react/dist/ssr";
+import prisma from "@/lib/prisma";
 
 export default async function page() {
   const session = await getSession();
+  const products = await prisma.product.findMany();
   return (
     <main className="max-w-5xl mx-auto my-3 max-lg:mx-2 text-neutral-800 flex flex-col gap-3">
       <Banner Icon={SquaresFour} title="Dashboard" />
@@ -34,9 +36,11 @@ export default async function page() {
             </div>
             <div className="flex flex-col items-center justify-center h-full">
               <h2 className="text-6xl font-black flex items-start">
-                20 <Plus size={22} weight="bold" />
+                {products.length} <Cube size={22} weight="fill" />
               </h2>
-              <p className="font-bold text-sm">Total keseluruhan product yang di jual.</p>
+              <p className="font-bold text-sm">
+                Total keseluruhan product yang di jual.
+              </p>
             </div>
           </div>
         </div>
@@ -45,7 +49,7 @@ export default async function page() {
             <Table weight="fill" size={20} className="text-orange-600" />
             <p className="font-bold text-sm">Product Terbaru</p>
           </div>
-          <Tabel />
+          <Tabel data={products.slice(0, 5)} />
           <div className="flex justify-end mt-2">
             <Button
               types="button"

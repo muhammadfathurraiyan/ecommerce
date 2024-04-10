@@ -13,10 +13,20 @@ type TParams = {
   };
 };
 
+export async function generateStaticParams() {
+  return [
+    { category: "makanan" },
+    { category: "minuman" },
+    { category: "kue" },
+    { category: "penajoh" },
+  ];
+}
+
 const categories = ["makanan", "kue", "minuman", "penajoh"];
 
 export default function page({ params }: TParams) {
-  if (!categories.includes(params.category)) {
+  const { category } = params;
+  if (!categories.includes(category)) {
     redirect("/");
   }
 
@@ -35,9 +45,9 @@ export default function page({ params }: TParams) {
     <main className="min-h-screen max-w-5xl mx-auto my-3 max-lg:mx-2 text-neutral-800 flex flex-col gap-3">
       <Menu
         title={`${
-          params.category.charAt(0).toUpperCase() + params.category.slice(1)
+          category.charAt(0).toUpperCase() + category.slice(1)
         } Khas Aceh`}
-        Icon={handleIcons(params.category)}
+        Icon={handleIcons(category)}
       />
     </main>
   );

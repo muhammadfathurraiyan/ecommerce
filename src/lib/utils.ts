@@ -78,3 +78,4 @@ export async function updateSession(req: NextRequest) {
   });
   return res;
 }
+

@@ -42,9 +42,12 @@ export default function Header() {
                 onChange={(e) => setSearch(e.target.value)}
                 className="w-full px-4 py-2 rounded-lg text-neutral-900 outline-none"
               />
-              <div className="absolute top-[3.4px] right-[3px]">
+              <Link
+                href={`/search/${search}`}
+                className="absolute top-[3.4px] right-[3px]"
+              >
                 <Button types="submit" Icon={MagnifyingGlass} />
-              </div>
+              </Link>
               <div className="flex items-center justify-between w-full text-sm">
                 <Link href="/minuman" className="max-lg:text-xs text-center">
                   Minuman Khas Aceh
@@ -72,7 +75,7 @@ export default function Header() {
                 Product
               </Link>
               <Link
-                href="/admin/analytics"
+                href="/admin/insight"
                 className="max-lg:text-xs text-center"
               >
                 Insight
