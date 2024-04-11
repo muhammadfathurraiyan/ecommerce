@@ -44,7 +44,7 @@ export default function Header() {
               />
               <Link
                 href={`/search/${search}`}
-                className="absolute top-[3.4px] right-[3px]"
+                className="absolute top-[3.5px] right-[3.1px]"
               >
                 <Button types="submit" Icon={MagnifyingGlass} />
               </Link>

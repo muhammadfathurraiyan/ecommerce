@@ -11,10 +11,15 @@ import {
   UserCircle,
 } from "@phosphor-icons/react/dist/ssr";
 import prisma from "@/lib/prisma";
+import Link from "next/link";
+import { unstable_noStore as noStore } from "next/cache";
 
 export default async function page() {
+  noStore();
   const session = await getSession();
-  const products = await prisma.product.findMany();
+  const products = await prisma.product.findMany({
+    orderBy: { createdAt: "desc" },
+  });
   return (
     <main className="max-w-5xl mx-auto my-3 max-lg:mx-2 text-neutral-800 flex flex-col gap-3">
       <Banner Icon={SquaresFour} title="Dashboard" />
@@ -51,12 +56,14 @@ export default async function page() {
           </div>
           <Tabel data={products.slice(0, 5)} />
           <div className="flex justify-end mt-2">
-            <Button
-              types="button"
-              title="Selengkapnya"
-              Icon={FastForward}
-              iconSize={22}
-            />
+            <Link href="/admin/product">
+              <Button
+                types="button"
+                title="Selengkapnya"
+                Icon={FastForward}
+                iconSize={22}
+              />
+            </Link>
           </div>
         </div>
       </div>

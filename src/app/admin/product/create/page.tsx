@@ -7,6 +7,7 @@ import { Cookie, PlusSquare } from "@phosphor-icons/react/dist/ssr";
 import TitleSlugInput from "@/components/global/formComponents/TitleSlugInput";
 import { getSession } from "@/lib/utils";
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 export default async function page() {
   const session = await getSession();

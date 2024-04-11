@@ -6,12 +6,8 @@ import {
   Pepper,
 } from "@phosphor-icons/react/dist/ssr";
 import { redirect } from "next/navigation";
-
-type TParams = {
-  params: {
-    category: string;
-  };
-};
+import { unstable_noStore as noStore } from "next/cache";
+import prisma from "@/lib/prisma";
 
 export async function generateStaticParams() {
   return [
@@ -24,11 +20,24 @@ export async function generateStaticParams() {
 
 const categories = ["makanan", "kue", "minuman", "penajoh"];
 
-export default function page({ params }: TParams) {
+export default async function page({
+  params,
+}: {
+  params: {
+    category: string;
+  };
+}) {
+  noStore();
+
   const { category } = params;
   if (!categories.includes(category)) {
     redirect("/");
   }
+
+  const data = await prisma.product.findMany({
+    where: { category: category },
+    orderBy: { createdAt: "desc" },
+  });
 
   const handleIcons = (icon: string) => {
     if (icon.includes("makanan")) {
@@ -44,6 +53,7 @@ export default function page({ params }: TParams) {
   return (
     <main className="min-h-screen max-w-5xl mx-auto my-3 max-lg:mx-2 text-neutral-800 flex flex-col gap-3">
       <Menu
+        data={data}
         title={`${
           category.charAt(0).toUpperCase() + category.slice(1)
         } Khas Aceh`}

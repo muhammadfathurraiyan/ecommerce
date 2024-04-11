@@ -11,7 +11,7 @@ const data = [
   { title: "Makanan Khas Aceh", image: Makanan, link: "/makanan" },
   { title: "Minuman Khas Aceh", image: Minuman, link: "/minuman" },
   { title: "Kue Khas Aceh", image: Kue, link: "/kue" },
-  { title: "Penajoh Aceh", image: Penajoh, link: "/Penajoh" },
+  { title: "Penajoh Aceh", image: Penajoh, link: "/penajoh" },
 ];
 
 export default function Category() {

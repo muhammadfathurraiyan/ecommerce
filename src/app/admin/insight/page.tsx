@@ -2,26 +2,32 @@ import DonutChart from "@/components/admin/insight/DonutChart";
 import Banner from "@/components/global/Banner";
 import { ChartDonut, Cube, ChartLine } from "@phosphor-icons/react/dist/ssr";
 import prisma from "@/lib/prisma";
+import { unstable_noStore as noStore } from "next/cache";
 
 export default async function page() {
+  noStore();
   const dataMakanan = await prisma.product.findMany({
     where: { category: "makanan" },
     select: { category: true },
+    orderBy: { createdAt: "desc" },
   });
 
   const dataMinuman = await prisma.product.findMany({
     where: { category: "minuman" },
     select: { category: true },
+    orderBy: { createdAt: "desc" },
   });
 
   const dataKue = await prisma.product.findMany({
     where: { category: "kue" },
     select: { category: true },
+    orderBy: { createdAt: "desc" },
   });
 
   const dataPenajoh = await prisma.product.findMany({
     where: { category: "penajoh" },
     select: { category: true },
+    orderBy: { createdAt: "desc" },
   });
 
   const totalProduct =

@@ -8,6 +8,7 @@ import prisma from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import { updateProduct } from "@/lib/actions";
 import { revalidatePath } from "next/cache";
+import { unstable_noStore as noStore } from "next/cache";
 
 export async function generateStaticParams() {
   const slugs = await prisma.product.findMany({ select: { slug: true } });
@@ -15,6 +16,7 @@ export async function generateStaticParams() {
 }
 
 export default async function page({ params }: { params: { update: string } }) {
+  noStore();
   const { update } = params;
   const datas = await prisma.product.findFirst({
     where: { slug: update },

@@ -3,16 +3,14 @@ import { deleteProduct } from "@/lib/actions";
 import { Eye, PencilLine, Trash } from "@phosphor-icons/react/dist/ssr";
 import { Product } from "@prisma/client";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 export default function Tabel({ data }: { data?: Product[] }) {
-  const router = useRouter();
   const pathname = usePathname();
   const deleteAction = async (data: FormData) => {
     const id = data.get("productId");
     const text = "Apa anda yakin ingin menghapus produk ini?";
     if (confirm(text)) await deleteProduct(+id!);
-    router.refresh();
   };
   return (
     <div className="relative overflow-x-auto rounded-t">

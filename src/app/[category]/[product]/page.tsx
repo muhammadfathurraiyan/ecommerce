@@ -10,10 +10,17 @@ import {
 import Button from "@/components/global/formComponents/Button";
 import prisma from "@/lib/prisma";
 import Link from "next/link";
+import { notFound } from "next/navigation";
+import { unstable_noStore as noStore } from "next/cache";
 
 export async function generateStaticParams() {
-  const products = await prisma.product.findMany({ select: { slug: true } });
-  return products.map((data) => ({ product: data }));
+  const products = await prisma.product.findMany({
+    select: { slug: true, category: true },
+  });
+  return products.map((product) => ({
+    category: product.category,
+    product: product.slug,
+  }));
 }
 
 export default async function page({
@@ -21,10 +28,17 @@ export default async function page({
 }: {
   params: { product: string };
 }) {
+  noStore();
   const { product } = params;
   const data = await prisma.product.findFirst({
     where: { slug: product },
+    orderBy: { createdAt: "desc" },
   });
+
+  if (!data) {
+    return notFound();
+  }
+  const message = `Saya%20ingin%20membeli%20produk%20${data?.title}%0A%0Ahttp://localhost:3000/${data?.category}/${data?.slug}`;
   return (
     <main className="max-w-5xl mx-auto my-3 max-lg:mx-2 text-neutral-800 gap-3 grid grid-cols-2 max-lg:grid-cols-1">
       <div className="h-[80vh] rounded-lg shadow-lg">
@@ -57,7 +71,10 @@ export default async function page({
           <p className="text-sm font-bold text-orange-600">Deskripsi :</p>
           <p className="">{data?.description}</p>
         </div>
-        <Link href={`https://wa.me/${data?.noWa}`} target="_blank">
+        <Link
+          href={`https://wa.me/${data?.noWa}?text=${message}`}
+          target="_blank"
+        >
           <Button
             types="button"
             Icon={ShoppingBagOpen}

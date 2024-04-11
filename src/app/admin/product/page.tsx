@@ -4,9 +4,13 @@ import Button from "@/components/global/formComponents/Button";
 import { Table, PlusSquare } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import prisma from "@/lib/prisma";
+import { unstable_noStore as noStore } from "next/cache";
 
 export default async function page() {
-  const data = await prisma.product.findMany();
+  noStore();
+  const data = await prisma.product.findMany({
+    orderBy: { createdAt: "desc" },
+  });
   return (
     <main className="max-w-5xl mx-auto my-3 max-lg:mx-2 text-neutral-800 flex flex-col gap-3">
       <Banner title="Product" Icon={Table} />

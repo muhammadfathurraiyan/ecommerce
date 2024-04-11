@@ -35,7 +35,10 @@ export default function Menu({
             </div>
             <div className="p-6 flex flex-col gap-3">
               <p className="text-2xl font-bold">Rp. {product.price}</p>
-              <h2 className="text-lg font-medium">{product.title}</h2>
+              <div>
+                <h2 className="text-lg font-medium">{product.title}</h2>
+                <p className="line-clamp-3">{product.description}</p>
+              </div>
               <Link href={`/${product.category}/${product.slug}`}>
                 <Button
                   title="Pesan"

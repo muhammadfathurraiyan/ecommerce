@@ -11,18 +11,22 @@ import prisma from "@/lib/prisma";
 export default async function Home() {
   const dataMakanan = await prisma.product.findMany({
     where: { category: "makanan", published: true },
+    orderBy: { createdAt: "desc" },
   });
 
   const dataMinuman = await prisma.product.findMany({
     where: { category: "minuman", published: true },
+    orderBy: { createdAt: "desc" },
   });
 
   const dataKue = await prisma.product.findMany({
     where: { category: "kue", published: true },
+    orderBy: { createdAt: "desc" },
   });
 
   const dataPenajoh = await prisma.product.findMany({
     where: { category: "penajoh", published: true },
+    orderBy: { createdAt: "desc" },
   });
 
   return (
